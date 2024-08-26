@@ -31,7 +31,7 @@ class Module:
 
     def train(self) -> None:
         "Set the mode of this module and all descendent modules to `train`."
-        self.training= True
+        self.training = True
         for module in self.modules.values():
             module.train()
 
@@ -56,7 +56,6 @@ class Module:
 
         for module_name, submodule in self.modules.items():
             for sub_name, sub_param in submodule.named_parameters():
-
                 full_name = f"{module_name}.{sub_name}"
                 parameter_list.append((full_name, sub_param))
         return parameter_list
@@ -67,7 +66,7 @@ class Module:
 
         for param in self._parameters.values():
             parameter_list.append((param))
-            
+
         for submodule in self._modules.values():
             parameter_list.extend(submodule.parameters())
         return parameter_list

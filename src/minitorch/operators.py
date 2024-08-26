@@ -12,7 +12,7 @@ from typing import Callable, Iterable
 
 def mul(x: float, y: float) -> float:
     "$f(x, y) = x * y$"
-    return x*y
+    return x * y
 
 
 def id(x: float) -> float:
@@ -56,7 +56,7 @@ def max(x: float, y: float) -> float:
 
 def is_close(x: float, y: float) -> float:
     "$f(x) = |x - y| < 1e-2$"
-    if (abs(x-y)) < .01:
+    if (abs(x - y)) < 0.01:
         return 1.0
     else:
         return 0.0
@@ -75,10 +75,10 @@ def sigmoid(x: float) -> float:
     for stability.
     """
     if x >= 0:
-        y = 1.0/(1.0 + math.exp(-x))
+        y = 1.0 / (1.0 + math.exp(-x))
     else:
         y = (math.exp(x)) / (1.0 + math.exp(x))
-    
+
     return y
 
 
@@ -110,7 +110,7 @@ def exp(x: float) -> float:
 def log_back(x: float, d: float) -> float:
     r"If $f = log$ as above, compute $d \times f'(x)$"
     # TODO: Implement for Task 0.1.
-    raise NotImplementedError('Need to implement for Task 0.1')
+    raise NotImplementedError("Need to implement for Task 0.1")
 
 
 def inv(x: float) -> float:
@@ -120,7 +120,7 @@ def inv(x: float) -> float:
 
 def inv_back(x: float, d: float) -> float:
     r"If $f(x) = 1/x$ compute $d \times f'(x)$"
-    return (-d/(x**2))
+    return -d / (x**2)
 
 
 def relu_back(x: float, d: float) -> float:
@@ -149,12 +149,14 @@ def map(fn: Callable[[float], float]) -> Callable[[Iterable[float]], Iterable[fl
          A function that takes a list, applies `fn` to each element, and returns a
          new list
     """
+
     def apply_fn(values: Iterable[float]) -> Iterable[float]:
         new_list = []
         for value in range(values):
             new_value = fn(value)
             new_list.append(new_value)
         return new_value
+
     return apply_fn
 
 
@@ -181,14 +183,15 @@ def zipWith(
          applying fn(x, y) on each pair of elements.
 
     """
+
     def zip_fn(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
         new_list = []
         for item1, item2 in zip(ls1, ls2):
-            combined_val = fn(item1,item2)
+            combined_val = fn(item1, item2)
             new_list.append(combined_val)
         return new_list
-    return zip_fn
 
+    return zip_fn
 
 
 def addLists(ls1: Iterable[float], ls2: Iterable[float]) -> Iterable[float]:
@@ -214,18 +217,19 @@ def reduce(
          $x_1 \ldots x_n$ and computes the reduction :math:`fn(x_3, fn(x_2,
          fn(x_1, x_0)))`
     """
+
     def reduce_fn(ls: Iterable[float]) -> float:
         accumulator = start
         for item in ls:
             accumulator = fn(accumulator, item)
         return accumulator
-    return reduce_fn
 
+    return reduce_fn
 
 
 def sum(ls: Iterable[float]) -> float:
     "Sum up a list using `reduce` and `add`."
-    new_value = reduce(add,0)(ls)
+    new_value = reduce(add, 0)(ls)
     return new_value
 
 

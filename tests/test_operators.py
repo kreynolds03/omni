@@ -109,18 +109,17 @@ def test_sigmoid(a: float) -> None:
     """
     larger_value = a + 1.0
     assert 0.0 <= sigmoid(a) <= 1.0
-    assert (1 - sigmoid(a) == pytest.approx(sigmoid(-a)))
+    assert 1 - sigmoid(a) == pytest.approx(sigmoid(-a))
     assert sigmoid(0) == 0.5
     if a < 8:
         assert sigmoid(a) < sigmoid(larger_value)
-
 
 
 @pytest.mark.task0_2
 @given(small_floats, small_floats, small_floats)
 def test_transitive(a: float, b: float, c: float) -> None:
     "Test the transitive property of less-than (a < b and b < c implies a < c)"
-    b = a +0.1
+    b = a + 0.1
     c = b + 0.1
     assert a < b < c
 
@@ -131,7 +130,7 @@ def test_symmetric() -> None:
     Write a test that ensures that :func:`minitorch.operators.mul` is symmetric, i.e.
     gives the same value regardless of the order of its input.
     """
-    assert mul(2.0,3.0)==mul(3.0,2.0)
+    assert mul(2.0, 3.0) == mul(3.0, 2.0)
 
 
 @pytest.mark.task0_2
@@ -143,16 +142,16 @@ def test_distribute() -> None:
     x = 2.0
     y = 3.0
     z = 4.0
-    assert mul(z, (x+y)) == (mul(z, x) + mul(z,y))
+    assert mul(z, (x + y)) == (mul(z, x) + mul(z, y))
 
 
 @pytest.mark.task0_2
 @given(small_floats, small_floats, small_floats)
-def test_other(a:float, b: float, c:float) -> None:
+def test_other(a: float, b: float, c: float) -> None:
     """
     Write a test that ensures some other property holds for your functions.
     """
-    assert ((a+b) + c) == pytest.approx(a +(b+c))
+    assert ((a + b) + c) == pytest.approx(a + (b + c))
 
 
 # ## Task 0.3  - Higher-order functions
@@ -181,7 +180,7 @@ def test_sum_distribute(ls1: List[float], ls2: List[float]) -> None:
     is the same as the sum of each element of `ls1` plus each element of `ls2`.
     """
     # TODO: Implement for Task 0.3.
-    raise NotImplementedError('Need to implement for Task 0.3')
+    raise NotImplementedError("Need to implement for Task 0.3")
 
 
 @pytest.mark.task0_3
